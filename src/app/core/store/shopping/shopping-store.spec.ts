@@ -345,8 +345,6 @@ describe('Shopping Store', () => {
             sortKeys: []
           [Filter API] Load Filter Success:
             filterNavigation: {}
-          [Product Listing Internal] Set Product Listing Pages:
-            id: {"type":"search","value":"something"}
         `);
       }));
 
@@ -524,8 +522,6 @@ describe('Shopping Store', () => {
           sortKeys: []
         [Filter API] Load Filter Success:
           filterNavigation: {}
-        [Product Listing Internal] Set Product Listing Pages:
-          id: {"type":"category","value":"A.123.456"}
       `);
     }));
 
@@ -630,8 +626,6 @@ describe('Shopping Store', () => {
             sortKeys: []
           [Filter API] Load Filter Success:
             filterNavigation: {}
-          [Product Listing Internal] Set Product Listing Pages:
-            id: {"type":"search","value":"something"}
         `);
       }));
 
@@ -792,8 +786,6 @@ describe('Shopping Store', () => {
             sortKeys: []
           [Filter API] Load Filter Success:
             filterNavigation: {}
-          [Product Listing Internal] Set Product Listing Pages:
-            id: {"type":"category","value":"A.123.456"}
           @ngrx/router-store/navigated:
             routerState: {"url":"/category/A.123.456","params":{"categoryUniqueId":"A...
             event: {"id":2,"url":"/category/A.123.456"}
@@ -1076,8 +1068,6 @@ describe('Shopping Store', () => {
           sortKeys: []
         [Filter API] Load Filter Success:
           filterNavigation: {}
-        [Product Listing Internal] Set Product Listing Pages:
-          id: {"type":"search","value":"something"}
       `);
     }));
   });
