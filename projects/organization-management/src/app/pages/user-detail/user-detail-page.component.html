@@ -64,6 +64,50 @@
       </a>
     </div>
   </div>
+
+  <div *ngIf="user.budgets" class="row section">
+    <div class="col-10 col-lg-8">
+      <h3>{{ 'BUDGET_MANAGEMENT_translate_me' | translate }}</h3>
+      <div class="row">
+        <div class="col-md-12" data-testing-id="user-roles-fields">
+          <dl class="row dl-horizontal dl-separator">
+            <dt class="col-md-4">{{ 'account.user.new.order_spend_limit.label' | translate }}</dt>
+            <dd
+              data-testing-id="order-spend-limit-field"
+              class="col-md-8"
+              *ngIf="user.budgets.orderSpentLimit; else noLimit"
+            >
+              {{ user.budgets.orderSpentLimit | ishPrice }}
+            </dd>
+            <ng-template #noLimit>
+              <dd class="col-md-8">{{ 'approval.details.threshold.unlimited' | translate }}</dd>
+            </ng-template>
+            <ng-container *ngIf="user.budgets.budget; else noBudget">
+              <dt class="col-md-4">{{ 'account.user.budget.label' | translate }} ({{ user.budgets.budgetPeriod }})</dt>
+              <dd data-testing-id="budget-field" class="col-md-8">
+                {{ user.budgets.budget | ishPrice }}
+              </dd>
+            </ng-container>
+            <ng-template #noBudget>
+              <dt class="col-md-4">{{ 'account.user.budget.label' | translate }}</dt>
+              <dd class="col-md-8">{{ 'account.budget.common.undefined' | translate }}</dd>
+            </ng-template>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 col-lg-4">
+      <!-- <a
+        routerLink="budgets"
+        class="btn-tool"
+        [title]="'account.profile.update.link' | translate"
+        data-testing-id="edit-budgets"
+      >
+        <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
+      </a> -->
+    </div>
+  </div>
 </ng-container>
 
 <a routerLink=".." data-testing-id="back-to-user-management">{{

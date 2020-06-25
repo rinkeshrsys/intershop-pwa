@@ -2,9 +2,11 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, MockPipe } from 'ng-mocks';
 import { of } from 'rxjs';
 import { anything, instance, mock, when } from 'ts-mockito';
+
+import { PricePipe } from 'ish-core/models/price/price.pipe';
 
 import { OrganizationManagementFacade } from '../../facades/organization-management.facade';
 import { B2bRole } from '../../models/b2b-role/b2b-role.model';
@@ -39,7 +41,7 @@ describe('User Detail Page Component', () => {
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, TranslateModule.forRoot()],
-      declarations: [MockComponent(FaIconComponent), UserDetailPageComponent],
+      declarations: [MockComponent(FaIconComponent), MockPipe(PricePipe), UserDetailPageComponent],
       providers: [{ provide: OrganizationManagementFacade, useFactory: () => instance(organizationManagementFacade) }],
     }).compileComponents();
   }));

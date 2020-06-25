@@ -17,6 +17,8 @@ const _ = {
     email: 'pmiller@test.intershop.de',
     role: 'Buyer',
     permission: 'Manage Purchases',
+    orderSpendLimit: '$500.00',
+    budget: '$10,000.00',
   },
 };
 
@@ -34,6 +36,13 @@ describe('User Management', () => {
     });
   });
 
+  it('should show budget popover on progress bar mouseover', () => {
+    at(UsersPage, page => {
+      page.hoverUserBudgetProgressBar(_.selectedUser.email);
+      page.getUserBudgetPopover(_.selectedUser.email).should('exist');
+    });
+  });
+
   it('should be able to see user details', () => {
     at(UsersPage, page => {
       page.goToUserDetailLink(_.selectedUser.email);
@@ -44,6 +53,8 @@ describe('User Management', () => {
       page.rolesAndPermissions.should('not.contain', _.user.role);
       page.rolesAndPermissions.should('contain', _.selectedUser.role);
       page.rolesAndPermissions.should('contain', _.selectedUser.permission);
+      page.orderSpendLimit.should('contain', `${_.selectedUser.orderSpendLimit}`);
+      page.budget.should('contain', `${_.selectedUser.budget}`);
     });
   });
 });

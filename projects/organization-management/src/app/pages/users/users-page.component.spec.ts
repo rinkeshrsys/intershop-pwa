@@ -13,6 +13,7 @@ import { ModalDialogComponent } from 'ish-shared/components/common/modal-dialog/
 import { OrganizationManagementFacade } from '../../facades/organization-management.facade';
 import { B2bUser } from '../../models/b2b-user/b2b-user.model';
 
+import { UserBudgetComponent } from './user-budget/user-budget.component';
 import { UserRolesBadgesComponent } from './user-roles-badges/user-roles-badges.component';
 import { UsersPageComponent } from './users-page.component';
 
@@ -37,6 +38,7 @@ describe('Users Page Component', () => {
         MockComponent(FaIconComponent),
         MockComponent(LoadingComponent),
         MockComponent(ModalDialogComponent),
+        MockComponent(UserBudgetComponent),
         MockComponent(UserRolesBadgesComponent),
         UsersPageComponent,
       ],
@@ -68,5 +70,10 @@ describe('Users Page Component', () => {
 
     expect(element.querySelector('[data-testing-id="user-list"]')).toBeTruthy();
     expect(element.querySelector('[data-testing-id="user-list"]').innerHTML).toContain('Patricia Miller');
+  });
+  it('should display user budget component on creation', () => {
+    when(organizationManagementFacade.users$).thenReturn(of(users));
+    fixture.detectChanges();
+    expect(element.querySelector('ish-user-budget')).toBeTruthy();
   });
 });

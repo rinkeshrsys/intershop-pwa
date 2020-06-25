@@ -28,4 +28,12 @@ export class UsersDetailPage {
   get rolesAndPermissions() {
     return cy.get(this.tag).find('[data-testing-id="user-roles-fields"]');
   }
+
+  get orderSpendLimit() {
+    return cy.get(this.tag).find('[data-testing-id="order-spend-limit-field"]');
+  }
+
+  get budget() {
+    return cy.get(this.tag).find('[data-testing-id="budget-field"]');
+  }
 }

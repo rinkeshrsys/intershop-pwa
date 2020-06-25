@@ -9,12 +9,14 @@ import { UserCreatePageComponent } from './pages/user-create/user-create-page.co
 import { UserDetailPageComponent } from './pages/user-detail/user-detail-page.component';
 import { UserEditProfilePageComponent } from './pages/user-edit-profile/user-edit-profile-page.component';
 import { UserEditRolesPageComponent } from './pages/user-edit-roles/user-edit-roles-page.component';
+import { UserBudgetComponent } from './pages/users/user-budget/user-budget.component';
 import { UserRolesBadgesComponent } from './pages/users/user-roles-badges/user-roles-badges.component';
 import { UsersPageComponent } from './pages/users/users-page.component';
 import { OrganizationManagementStoreModule } from './store/organization-management-store.module';
 
 @NgModule({
   declarations: [
+    UserBudgetComponent,
     UserCreatePageComponent,
     UserDetailPageComponent,
     UserEditProfilePageComponent,

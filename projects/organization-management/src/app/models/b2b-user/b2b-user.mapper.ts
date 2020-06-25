@@ -16,6 +16,12 @@ export class B2bUserMapper {
         name: e.name,
         login: e.login,
         roleIDs: AttributeHelper.getAttributeValueByAttributeName(e.attributes, 'roles'),
+        budgets: {
+          orderSpentLimit: AttributeHelper.getAttributeValueByAttributeName(e.attributes, 'orderSpentLimit'),
+          budget: AttributeHelper.getAttributeValueByAttributeName(e.attributes, 'budget'),
+          remainingBudget: AttributeHelper.getAttributeValueByAttributeName(e.attributes, 'remainingBudget'),
+          budgetPeriod: AttributeHelper.getAttributeValueByAttributeName(e.attributes, 'budgetPeriod'),
+        },
       }));
     } else {
       throw new Error('data is required');

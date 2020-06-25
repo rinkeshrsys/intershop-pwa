@@ -52,6 +52,10 @@ describe('B2b User Mapper', () => {
               name: 'roles',
               value: ['APP_B2B_COSTCENTER_OWNER', 'APP_B2B_BUYER'],
             },
+            { name: 'budgetPeriod', type: 'String', value: 'monthly' },
+            { name: 'orderSpentLimit', type: 'MoneyRO', value: { currency: 'USD', value: 500 } },
+            { name: 'budget', type: 'MoneyRO', value: { currency: 'USD', value: 10000 } },
+            { name: 'remainingBudget', type: 'MoneyRO', value: { currency: 'USD', value: 10000 } },
           ],
         } as B2bUserData,
       ];
@@ -60,6 +64,21 @@ describe('B2b User Mapper', () => {
       expect(users).toMatchInlineSnapshot(`
         Array [
           Object {
+            "budgets": Object {
+              "budget": Object {
+                "currency": "USD",
+                "value": 10000,
+              },
+              "budgetPeriod": "monthly",
+              "orderSpentLimit": Object {
+                "currency": "USD",
+                "value": 500,
+              },
+              "remainingBudget": Object {
+                "currency": "USD",
+                "value": 10000,
+              },
+            },
             "login": "pmiller@test.intershop.de",
             "name": "Patricia Miller",
             "roleIDs": Array [
