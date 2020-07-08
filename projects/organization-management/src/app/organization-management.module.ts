@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from 'ish-shared/shared.module';
 
+import { UserBudgetFormComponent } from './components/user/user-budget-form/user-budget-form.component';
 import { UserProfileFormComponent } from './components/user/user-profile-form/user-profile-form.component';
 import { UserRolesSelectionComponent } from './components/user/user-roles-selection/user-roles-selection.component';
 import { OrganizationManagementRoutingModule } from './pages/organization-management-routing.module';
@@ -17,6 +18,7 @@ import { OrganizationManagementStoreModule } from './store/organization-manageme
 @NgModule({
   declarations: [
     UserBudgetComponent,
+    UserBudgetFormComponent,
     UserCreatePageComponent,
     UserDetailPageComponent,
     UserEditProfilePageComponent,

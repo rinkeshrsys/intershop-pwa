@@ -12,6 +12,7 @@ import { B2bRoleMapper } from '../../models/b2b-role/b2b-role.mapper';
 import { B2bRole } from '../../models/b2b-role/b2b-role.model';
 import { B2bUserMapper } from '../../models/b2b-user/b2b-user.mapper';
 import { B2bUser } from '../../models/b2b-user/b2b-user.model';
+import { UserBudgets } from '../../models/user-budgets/user-budgets.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
@@ -74,8 +75,14 @@ export class UsersService {
             ],
           })
           .pipe(
-            concatMap(() => forkJoin([this.setUserRoles(user.email, user.roleIDs), this.getUser(user.email)])),
-            map(([roleIDs, newUser]) => ({ ...newUser, roleIDs }))
+            concatMap(() =>
+              forkJoin([
+                this.setUserRoles(user.email, user.roleIDs),
+                this.setUserBudgets(user.email, user.budgets),
+                this.getUser(user.email),
+              ])
+            ),
+            map(([roleIDs, budgets, newUser]) => ({ ...newUser, roleIDs, budgets }))
           )
       )
     );
@@ -147,6 +154,20 @@ export class UsersService {
           unpackEnvelope<B2bRoleData>('userRoles'),
           map(data => data.map(r => r.roleID))
         )
+      )
+    );
+  }
+
+  /**
+   * Set budgets for a given b2b user.
+   * @param login   The login of the user.
+   * @param budgets The user's budget.
+   * @returns the set of new roles
+   */
+  setUserBudgets(login: string, budgets: UserBudgets): Observable<UserBudgets> {
+    return this.currentCustomer$.pipe(
+      switchMap(customer =>
+        this.apiService.put<UserBudgets>(`customers/${customer.customerNo}/users/${login}/budgets`, budgets)
       )
     );
   }

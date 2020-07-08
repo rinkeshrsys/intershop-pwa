@@ -67,9 +67,10 @@
 
   <div *ngIf="user.budgets" class="row section">
     <div class="col-10 col-lg-8">
-      <h3>{{ 'BUDGET_MANAGEMENT_translate_me' | translate }}</h3>
+      <h3>{{ 'account.user.details.profile.budget_limits.heading' | translate }}</h3>
+
       <div class="row">
-        <div class="col-md-12" data-testing-id="user-roles-fields">
+        <div class="col-md-12" data-testing-id="user-budgets">
           <dl class="row dl-horizontal dl-separator">
             <dt class="col-md-4">{{ 'account.user.new.order_spend_limit.label' | translate }}</dt>
             <dd
@@ -83,7 +84,11 @@
               <dd class="col-md-8">{{ 'approval.details.threshold.unlimited' | translate }}</dd>
             </ng-template>
             <ng-container *ngIf="user.budgets.budget; else noBudget">
-              <dt class="col-md-4">{{ 'account.user.budget.label' | translate }} ({{ user.budgets.budgetPeriod }})</dt>
+              <dt class="col-md-4">
+                {{ 'account.user.budget.label' | translate }} ({{
+                  'account.user.new.budget.period.value.' + user.budgets.budgetPeriod | translate
+                }})
+              </dt>
               <dd data-testing-id="budget-field" class="col-md-8">
                 {{ user.budgets.budget | ishPrice }}
               </dd>
