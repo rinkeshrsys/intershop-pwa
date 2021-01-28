@@ -50,7 +50,7 @@ export class PaymentCybersourceCreditcardComponent implements OnChanges, OnDestr
   yearOptions: SelectOption[];
 
   /**
-   * concardis payment method, needed to get configuration parameters
+   * cybersource payment method, needed to get configuration parameters
    */
   @Input() paymentMethod: PaymentMethod;
 
@@ -85,7 +85,7 @@ export class PaymentCybersourceCreditcardComponent implements OnChanges, OnDestr
   };
 
   ngOnInit() {
-    this.cyberSourceCreditCardForm = new FormGroup({});
+    this.cyberSourceCreditCardForm = new FormGroup({ saveForLater: new FormControl(true) });
     this.cyberSourceCreditCardForm.addControl(
       'expirationMonth',
       new FormControl('', [Validators.required, Validators.pattern('[0-9]{2}')])
@@ -195,7 +195,7 @@ export class PaymentCybersourceCreditcardComponent implements OnChanges, OnDestr
           { name: 'maskedCardNumber', value: payloadjson.data.number },
           { name: 'expirationDate', value: `${this.expirationMonthVal}/${this.expirationYearVal}` },
         ],
-        saveAllowed: false,
+        saveAllowed: this.paymentMethod.saveAllowed && this.cyberSourceCreditCardForm.get('saveForLater').value,
       });
     }
     this.cd.detectChanges();
@@ -230,6 +230,9 @@ export class PaymentCybersourceCreditcardComponent implements OnChanges, OnDestr
    */
   cancelNewPaymentInstrument() {
     this.cyberSourceCreditCardForm.reset();
+    if (this.cyberSourceCreditCardForm.get('saveForLater')) {
+      this.cyberSourceCreditCardForm.get('saveForLater').setValue(true);
+    }
     this.cancel.emit();
   }
 }
